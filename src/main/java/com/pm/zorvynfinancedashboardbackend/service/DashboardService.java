@@ -44,8 +44,8 @@ public class DashboardService {
                 .toList();
     }
     public DashboardResponse getSummary() {
-        double income = getTotalIncome();
-        double expense = getTotalExpense();
+        Double income = getTotalIncome();
+        Double expense = getTotalExpense();
 
         return new DashboardResponse(
                 income,

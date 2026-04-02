@@ -1,6 +1,7 @@
 package com.pm.zorvynfinancedashboardbackend.repository;
 
 import com.pm.zorvynfinancedashboardbackend.entity.FinancialRecord;
+import com.pm.zorvynfinancedashboardbackend.entity.User;
 import com.pm.zorvynfinancedashboardbackend.entity.enums.RecordType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -16,6 +17,10 @@ public interface FinancialRecordRepository extends JpaRepository<FinancialRecord
     List<FinancialRecord> findByDateBetween(LocalDate start, LocalDate end);
 
     List<FinancialRecord> findByDeletedFalse();
+
+    List<FinancialRecord> findByUser(User user);
+
+    List<FinancialRecord> findByCategoryContainingIgnoreCase(String category);
 
 }
 

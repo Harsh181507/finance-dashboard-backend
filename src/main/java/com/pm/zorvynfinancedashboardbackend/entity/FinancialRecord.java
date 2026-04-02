@@ -19,6 +19,12 @@ import java.time.LocalDateTime;
 @Builder
 public class FinancialRecord {
 
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

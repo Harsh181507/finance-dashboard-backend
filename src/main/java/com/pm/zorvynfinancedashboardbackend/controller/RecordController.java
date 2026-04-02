@@ -30,8 +30,12 @@ public class RecordController {
 
     @PreAuthorize("hasAnyRole('ADMIN','ANALYST')")
     @GetMapping
-    public ApiResponse<List<FinancialRecord>> getAll() {
-        return new ApiResponse<>("success", recordService.getAllRecords());
+    public ApiResponse<List<FinancialRecord>> getAllRecords(
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "asc") String direction
+    ) {
+        return new ApiResponse<>("success",
+                recordService.getAllRecordsSorted(sortBy, direction));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN','ANALYST')")
@@ -69,6 +73,19 @@ public class RecordController {
             @RequestParam LocalDate end
     ) {
         return recordService.filterByDate(start, end);
+    }
+
+    @GetMapping("/my")
+    public ApiResponse<List<FinancialRecord>> getMyRecords() {
+        return new ApiResponse<>("success", recordService.getMyRecords());
+    }
+
+    @GetMapping("/search")
+    public ApiResponse<List<FinancialRecord>> search(
+            @RequestParam String category
+    ) {
+        return new ApiResponse<>("success",
+                recordService.searchByCategory(category));
     }
 }
 

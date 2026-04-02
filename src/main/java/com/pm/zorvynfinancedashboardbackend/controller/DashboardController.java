@@ -25,7 +25,6 @@ public class DashboardController {
     public ApiResponse<DashboardResponse> getSummary() {
         return new ApiResponse<>("success", dashboardService.getSummary());
     }
-
     @GetMapping("/recent")
     public ApiResponse<List<FinancialRecord>> getRecent() {
         return new ApiResponse<>("success", dashboardService.getRecentTransactions());
