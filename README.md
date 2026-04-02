@@ -45,6 +45,7 @@ http://localhost:8080
 ### 💰 Financial Records Management
 
 * Create, update, delete records
+* Each record is linked to the authenticated user
 * Fields:
 
   * Amount
@@ -67,6 +68,7 @@ http://localhost:8080
 * Total expenses
 * Net balance
 * Recent transactions
+* Structured JSON response for better API design
 
 ---
 
@@ -75,15 +77,18 @@ http://localhost:8080
 * JWT-based authentication
 * Stateless session management
 * Role-based authorization (RBAC)
-* Secured endpoints
+* Secured endpoints using `@PreAuthorize`
 
 ---
 
 ### ⚡ Advanced Backend Features
 
 * Pagination (`/records/paginated`)
+* Sorting support (`/records?sortBy=amount&direction=desc`)
+* User-specific records (`/records/my`)
+* Search support (`/records/search?category=Salary`)
 * Input validation (`@Valid`, constraints)
-* Global exception handling
+* Global exception handling (structured error responses)
 * Consistent API response format
 * Password encryption (BCrypt)
 * Optimized database queries (no unnecessary in-memory filtering)
@@ -92,12 +97,22 @@ http://localhost:8080
 
 ## 📦 API Response Format
 
-All successful responses follow:
+### ✅ Success
 
 ```json
 {
   "status": "success",
   "data": {}
+}
+```
+
+### ❌ Error
+
+```json
+{
+  "status": "error",
+  "message": "Error message",
+  "timestamp": "2026-04-02T12:00:00"
 }
 ```
 
@@ -204,7 +219,7 @@ Use Swagger to:
 
 ## 🧠 Assumptions
 
-* First user (ADMIN) is created without authentication
+* First user (ADMIN) is created without authentication for initial setup
 * JWT is used for stateless authentication
 * MySQL runs locally via Docker
 * Focus is on clean backend design and logical structure
@@ -214,7 +229,7 @@ Use Swagger to:
 ## 📈 Design Decisions
 
 * Layered architecture (Controller → Service → Repository)
-* DTO-based responses for clarity
+* DTO-based responses for clarity and consistency
 * Database-level filtering for performance
 * Centralized exception handling
 * Security-first approach using JWT + RBAC
