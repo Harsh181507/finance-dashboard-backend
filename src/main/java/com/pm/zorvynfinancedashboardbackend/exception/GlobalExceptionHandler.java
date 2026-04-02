@@ -3,6 +3,7 @@ package com.pm.zorvynfinancedashboardbackend.exception;
 
 
 import com.pm.zorvynfinancedashboardbackend.dto.ErrorResponse;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +36,11 @@ public class GlobalExceptionHandler {
         error.put("error", "Something went wrong");
 
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<?> handleDBError(DataIntegrityViolationException ex) {
+        return ResponseEntity.badRequest().body("Email already exists");
     }
 }
 

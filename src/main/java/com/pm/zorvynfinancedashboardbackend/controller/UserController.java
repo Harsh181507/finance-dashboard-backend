@@ -18,7 +18,6 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ApiResponse<User> createUser(@Valid @RequestBody User user) {
