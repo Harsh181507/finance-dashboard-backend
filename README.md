@@ -87,6 +87,7 @@ http://localhost:8080
 * Sorting support (`/records?sortBy=amount&direction=desc`)
 * User-specific records (`/records/my`)
 * Search support (`/records/search?category=Salary`)
+* Rate limiting (basic time-window-based, per IP)
 * Input validation (`@Valid`, constraints)
 * Global exception handling (structured error responses)
 * Consistent API response format
@@ -199,7 +200,7 @@ Use Swagger to:
 ## 🔑 Role-Based Access Summary
 
 | Role    | Permissions                               |
-| ------- | ----------------------------------------- |
+|---------|-------------------------------------------|
 | ADMIN   | Full access (users + records + dashboard) |
 | ANALYST | View records + analytics                  |
 | VIEWER  | Dashboard only                            |
@@ -219,7 +220,7 @@ Use Swagger to:
 
 ## 🧠 Assumptions
 
-* First user (ADMIN) is created without authentication for initial setup
+* The First user (ADMIN) is created without authentication for initial setup
 * JWT is used for stateless authentication
 * MySQL runs locally via Docker
 * Focus is on clean backend design and logical structure
