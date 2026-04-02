@@ -8,6 +8,14 @@ It is designed with a focus on clean architecture, secure APIs, and maintainable
 
 ---
 
+## 🌐 Base URL
+
+```
+http://localhost:8080
+```
+
+---
+
 ## 🧱 Tech Stack
 
 * Java Spring Boot
@@ -117,15 +125,15 @@ docker-compose up -d
 
 ### 3️⃣ Access the Application
 
-```plaintext
+```
 http://localhost:8080
 ```
 
 ---
 
-### 📘 Swagger UI (API Testing)
+## 📘 Swagger UI (API Testing)
 
-```plaintext
+```
 http://localhost:8080/swagger-ui.html
 ```
 
@@ -134,6 +142,16 @@ Use Swagger to:
 * Explore APIs
 * Test endpoints
 * Add JWT token via **Authorize 🔐 button**
+
+---
+
+## 🔐 Authentication Flow
+
+1. Create a user via `/users`
+2. Login using `/auth/login` to receive JWT token
+3. Click **Authorize 🔐** in Swagger
+4. Enter: `Bearer <your-token>`
+5. Access secured endpoints
 
 ---
 
@@ -146,6 +164,23 @@ Use Swagger to:
 
 ---
 
+## 🧪 Example API Request
+
+### Create User
+
+**POST /users**
+
+```json
+{
+  "name": "Admin",
+  "email": "admin@test.com",
+  "password": "1234",
+  "role": "ADMIN"
+}
+```
+
+---
+
 ## 🔑 Role-Based Access Summary
 
 | Role    | Permissions                               |
@@ -153,6 +188,17 @@ Use Swagger to:
 | ADMIN   | Full access (users + records + dashboard) |
 | ANALYST | View records + analytics                  |
 | VIEWER  | Dashboard only                            |
+
+---
+
+## 📁 Project Structure
+
+* controller → API endpoints
+* service → business logic
+* repository → database access
+* entity → data models
+* config → security & configurations
+* dto → response objects
 
 ---
 
